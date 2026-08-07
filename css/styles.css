@@ -66,7 +66,7 @@ body{
     border:none;
     border-radius:18px;
     background:linear-gradient(135deg,#7d39ff,#b3367a);
-    transition:.35s;
+    transition:.15s;
     font-weight:600;
 }
 
@@ -151,7 +151,7 @@ label{
     background:rgba(255,255,255,.06);
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.15);
-    transition:.35s;
+    transition:.15s;
     justify-content: center;
 }
 
@@ -172,14 +172,15 @@ label{
     border-radius:22px;
     padding:22px;
     margin-bottom:20px;
-    transition:.3s;
+    transition:.15s;
     cursor:pointer;
 }
 
-.task-card:hover{
-    transform:translateY(-4px);
+/* .task-card:hover{
+    transform:translateY(-2px);
     background:rgba(255,255,255,.10);
-}
+} */
+/* movimiento click anulado de card */
 
 .task-header{
     display:flex;
@@ -223,16 +224,17 @@ label{
     border:1px solid #b388ff;
     background:rgba(255,255,255,.14);
     box-shadow:
-        0 0 25px rgba(179,136,255,.25),
-        inset 0 0 18px rgba(255,255,255,.05);
-    transform:translateX(6px);
+        0 0 18px rgba(179,136,255,.2),
+        inset 0 0 12px rgba(255,255,255,.05);
+    /* transform:translateX(5px);
+    /* desplaza card izquierda */
 }
 
 .editar{
     opacity:0;
     transform:translateX(10px);
     pointer-events:none;
-    transition:.25s;
+    transition:.15s;
 }
 
 .task-card.active .editar{
