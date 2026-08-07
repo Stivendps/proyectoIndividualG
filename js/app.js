@@ -1,5 +1,6 @@
 const tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 let tareaEditando = null;
+let tarjetaActiva = null;
 
 const titulo = document.querySelector("#titulo");
 const descripcion = document.querySelector("#descripcion");
@@ -69,48 +70,46 @@ function crearTarjeta(tarea){
     return card;
 }
 
+function agregarTarjeta(tarea) {
+    const tarjeta = crearTarjeta(tarea);
+    lista.appendChild(tarjeta);
+}
+
 function renderizarTareas() {
     lista.innerHTML = "";
-    tareas.forEach(tarea=>{
-        const tarjeta = crearTarjeta(tarea);
-        lista.appendChild(tarjeta);
-    });
-    agregarEventos();
+    tareas.forEach(agregarTarjeta);
     actualizarEstadisticas();
 }
 
-function agregarEventos(){
-    document.querySelectorAll(".completar").forEach(check=>{
-        check.addEventListener("change",()=>{
-            const id = Number(check.dataset.id);
-            const tarea = tareas.find(t=>t.id===id);
-            tarea.completada = check.checked;
-            guardarLocalStorage();
-            renderizarTareas();
-        });
-    });
+lista.addEventListener("click", (e) => {
 
-    document.querySelectorAll(".eliminar").forEach(btn=>{
-        btn.addEventListener("click",()=>{
-            eliminarTarea(Number(btn.dataset.id));
-        });
-    });
+    const btnEliminar = e.target.closest(".eliminar");
+    if (btnEliminar) {
+        eliminarTarea(Number(btnEliminar.dataset.id));
+        return;
+    }
 
-    document.querySelectorAll(".task-card").forEach(card => {
+    const card = e.target.closest(".task-card");
+    if (card &&
+        !e.target.closest(".editar") &&
+        !e.target.closest(".completar")) {
 
-        card.addEventListener("click", (e) => {
+       if (tarjetaActiva) {
+            tarjetaActiva.classList.remove("active");
+        }
+        card.classList.add("active");
+        tarjetaActiva = card;
+    }
+});
 
-            if (e.target.closest(".btn-icon") || e.target.closest(".completar")
-            ) return;
-
-            document.querySelectorAll(".task-card").forEach(c => {
-                c.classList.remove("active");
-            });
-            card.classList.add("active");
-        });
-
-    });
-}
+lista.addEventListener("change", (e) => {
+    if (!e.target.classList.contains("completar")) return;
+    const id = Number(e.target.dataset.id);
+    const tarea = tareas.find(t => t.id === id);
+    tarea.completada = e.target.checked;
+    guardarLocalStorage();
+    actualizarEstadisticas();
+});
 
 function actualizarEstadisticas() {
     const total = tareas.length;
@@ -141,8 +140,12 @@ function eliminarTarea(id){
     const indice=tareas.findIndex(t=>t.id===id);
     if(indice!==-1){
         tareas.splice(indice,1);
+        document
+            .querySelector(`.eliminar[data-id="${id}"]`)
+            .closest(".task-card")
+            .remove();
         guardarLocalStorage();
-        renderizarTareas();
+        actualizarEstadisticas();
     }
 }
 
@@ -165,8 +168,9 @@ function agregarTarea(e){
     };
     tareas.push(tarea);
     guardarLocalStorage();
+    agregarTarjeta(tarea);
+    actualizarEstadisticas();
     limpiarFormulario();
-    renderizarTareas();
 }
 
 function limpiarFormulario(){
