@@ -15,7 +15,7 @@ btnAgregar.addEventListener("click", agregarTarea);
 function obtenerPrioridad(estado) {
     switch (estado) {
         case "1":
-            return '<span class="prioridad prioridad-1">!</span>';
+            return '<span class="prioridad prioridad-1"></span>';
         case "2":
             return '<span class="prioridad prioridad-2">!!</span>';
         case "3":
@@ -24,48 +24,49 @@ function obtenerPrioridad(estado) {
             return '<span class="prioridad prioridad-1">!</span>';
     }
 }
-
+// visualizacion de la tarjeta
 function crearTarjeta(tarea){
     const card = document.createElement("div");
-
     card.className = "task-card";
     card.innerHTML = `
-        <div class="task-header">
-            <div class="task-title">
-                <input
-                class="form-check-input completar"
-                type="checkbox"
-                data-id="${tarea.id}"
-                ${tarea.completada ? "checked" : ""}>
-                ${obtenerPrioridad(tarea.estado)}
-                <h5>${tarea.titulo}</h5>
+        <input
+            class="form-check-input completar"
+            type="checkbox"
+            data-id="${tarea.id}"
+            ${tarea.completada ? "checked" : ""}>
+
+        <div class="task-content">
+            <h5>${tarea.titulo}</h5>
+            <div class="task-info">
+                <span>
+                    <i class="bi bi-calendar-event"></i>
+                    ${tarea.fecha}
+                </span>
+                <span>
+                    <i class="bi bi-person"></i>
+                    ${tarea.asignado}
+                </span>
             </div>
-            <div class="task-actions">
-                <button
+            <p class="task-description">
+                ${tarea.descripcion}
+            </p>
+        </div>
+
+        <div class="task-actions">
+            <button
                 class="btn-icon editar"
                 data-id="${tarea.id}">
-                    <i class="bi bi-pen"></i>
-                </button>
-                <button
+                <i class="bi bi-pencil"></i>
+            </button>
+            <button
                 class="btn-icon eliminar"
                 data-id="${tarea.id}">
-                    <i class="bi bi-trash-fill"></i>
-                </button>
-            </div>
+                <i class="bi bi-trash-fill"></i>
+            </button>
         </div>
-        <div class="task-info">
-            <span>
-                <i class="bi bi-calendar-event"></i>
-                ${tarea.fecha}
-            </span>
-            <span>
-                <i class="bi bi-person"></i>
-                ${tarea.asignado}
-            </span>
-        </div>
-        <p class="task-description">
-            ${tarea.descripcion}
-        </p>
+                <span class="prioridad prioridad-${tarea.estado}">
+            ${obtenerPrioridad(tarea.estado)}
+        </span>
     `;
     return card;
 }
@@ -90,16 +91,29 @@ lista.addEventListener("click", (e) => {
     }
 
     const card = e.target.closest(".task-card");
-    if (card &&
-        !e.target.closest(".editar") &&
-        !e.target.closest(".completar")) {
 
-       if (tarjetaActiva) {
-            tarjetaActiva.classList.remove("active");
-        }
-        card.classList.add("active");
-        tarjetaActiva = card;
+    if (!card ||
+        e.target.closest(".editar") ||
+        e.target.closest(".completar")) {
+        return;
     }
+
+    // Si la tarjeta ya está abierta, la cerramos
+    if (card === tarjetaActiva) {
+        card.classList.remove("active");
+        tarjetaActiva = null;
+        return;
+    }
+
+    // Cerramos la anterior si existe
+    if (tarjetaActiva) {
+        tarjetaActiva.classList.remove("active");
+    }
+
+    // Abrimos la nueva
+    card.classList.add("active");
+    tarjetaActiva = card;
+
 });
 
 lista.addEventListener("change", (e) => {

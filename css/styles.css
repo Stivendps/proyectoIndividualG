@@ -21,9 +21,8 @@ body{
 
 .sidebar{
     width:370px;
-    border-radius:50px;
+    border-radius:25px;
     background:rgba(255,255,255,.08);
-    /* backdrop-filter:blur(20px); */
     -webkit-backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.18);
     box-shadow:
@@ -32,14 +31,17 @@ body{
 }  
 
 .tareas{
-    border-radius:30px;
+    display:flex;
+    flex-direction:column;
+    border-radius:25px;
     background:rgba(255,255,255,.08);
     /* backdrop-filter:blur(20px); */
     border:1px solid rgba(255,255,255,.18);
     box-shadow:
     inset 0 1px 2px rgba(255,255,255,.45),
     0 15px 40px rgba(0,0,0,.35);
-    overflow:auto;
+    /* overflow:auto; */
+    /* ↑↑ probando scroll en listado lateral izq↑↑ */
 } 
 
 .form-control{
@@ -83,7 +85,7 @@ body{
     margin-bottom:15px;
 }
 
-h3,
+h4,
 .fs-4{
     color:white;
     font-weight:600;
@@ -112,27 +114,8 @@ label{
     box-shadow:0 0 20px rgba(179,140,255,.3);
 }
 
-.prioridad-1{
-    color:#ffffff;
-    font-size:30px;
-}
-
-.prioridad-2{
-    color:#ffc107;
-    letter-spacing:2px;
-    font-weight:bold;
-    font-size:30px;
-}
-
-.prioridad-3{
-    color:#ff4d6d;
-    font-weight:bold;
-    letter-spacing:2px;
-    font-size:30px;
-}
-
 .list{
-    border-radius: 50px;
+    border-radius: 20px;
 }
 
 .estadisticas{
@@ -147,62 +130,105 @@ label{
     align-items:center;
     gap:18px;
     padding: 2px 2px;
-    border-radius:30px;
+    border-radius:20px;
     background:rgba(255,255,255,.06);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.15);
+    border:1px solid rgba(255, 255, 255, 0.209);
     transition:.15s;
     justify-content: center;
 }
 
 .card-stat i{
     font-size:2rem;
-    color:#b388ff;
+    color:#9539f1;
 }
 
 .card-stat p{
-    color:#cfcfcf;
+    color:#f9f7fb;
     margin:0;
+}
+
+h2{
+    color: #faf8f9;
+    margin-top: 8px;
+    font-size: 40px;
 }
 
 .task-card{
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.12);
-    /* backdrop-filter:blur(15px); */
-    border-radius:22px;
-    padding:22px;
-    margin-bottom:20px;
-    transition:.15s;
+    border-radius:20px;
+    margin-bottom:5px;
+    transition:0.2s;
     cursor:pointer;
+    display: flex;
+    align-items: center;
+    padding: 4PX;
+}
+
+.task-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex:1;
+}
+
+.task-content{
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+    margin-left: 15px;
+}
+
+.task-actions{
+    display:flex;
+    gap:12px;
+    margin-left: auto;
+    opacity:0;
+    transform:translateX(12px);
+    transition:.20s;
+    pointer-events:none;
+}
+
+.task-content h5{
+    color:#fff;
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+.task-content span{
+    color:#cdc4c4;
+    font-size:1.1rem;
+    font-weight:500;
+}
+
+.task-card.active .task-content{
+    margin-top:13px;
 }
 
 .task-card:hover{
-    transform:translateY(-2px);
-    background:rgba(255,255,255,.10);
+    transform:translateX(5px);
+    background:rgba(255, 255, 255, 0.159);
 } 
 /* movimiento click anulado de card */
 
-.task-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.task-title h5{
-    margin:0;
-    color:white;
-}
-
 .task-info{
     display:flex;
-    gap:40px;
-    margin-top:18px;
-    color:#cfcfcf;
+    gap:20px;
     font-size:.9rem;
+    color:#bdbdbd;
 }
 
-.editar:hover{
-    background:#4e7cff;
+.task-description{
+    color:#cfcfcf;
+    line-height:1.5;
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+    transition:
+        max-height .25s ease,
+        opacity .20s ease,
+        margin-top .20s ease;
+        margin-right: 15px;
 }
 
 /* linea separador estados - lista */
@@ -228,15 +254,164 @@ label{
         inset 0 0 1px rgba(255,255,255,.40);
 }
 
+.task-card.active .editar{
+    opacity:1;
+    pointer-events:auto;
+}
+
+.task-card.active .task-description{
+    max-height:120px;
+    opacity:1;
+    margin-top:12px;
+    margin-bottom: 10px;
+}
+
+.task-card.active .task-actions{
+    opacity:1;
+    transform:translateX(0);
+    pointer-events:auto;
+}
+
+.task-card:hover .task-actions{
+    opacity:1;
+    transform:translateX(0);
+    pointer-events:auto;
+}
+
 .editar{
     opacity:0;
-    transform:translateX(10px);
     pointer-events:none;
     transition:.15s;
 }
 
-.task-card.active .editar{
-    opacity:1;
-    transform:translateX(0);
-    pointer-events:auto;
+.editar:hover{
+    color:rgb(78, 240, 9);
+}
+
+.eliminar:hover{
+    color:rgb(240, 9, 9);
+}
+
+.btn-icon{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:15px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    color:#d6d6d6;
+    transition:.15s;
+}
+
+.btn-icon:hover{
+    background:rgba(255,255,255,.12);
+    transform:translateY(-3px);
+}
+
+.prioridad{
+    width:27px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:1.6rem;
+    clip-path:polygon(
+        50% 100%,
+        0 78%,
+        0 0,
+        100% 0,
+        100% 78%
+    );
+    margin: 10px;
+    border-radius: 12px;
+}
+
+.prioridad-1{
+    background:#4a4a4a05;
+    color:rgb(231, 231, 231);
+}
+
+.prioridad-2{
+    background:#755525;
+    color:rgb(235, 232, 229);
+}
+
+.prioridad-3{
+    background:#cc17178b;
+    color:rgb(250, 248, 248);
+}
+
+.form-check-input{
+    width:30px;
+    height:30px;
+    appearance:none;
+    -webkit-appearance:none;
+    border:2px solid rgba(181, 177, 177, 0.55);
+    border-radius:5cap;
+    background:transparent;
+    cursor:pointer;
+    transition:.18s;
+    margin-left: 10px;
+}
+
+.form-check-input.completar{
+    border-radius: 50px;
+}
+
+.form-check-input:hover{
+ transform:translateY(-3px);
+ background: #8ad47b71;
+}
+
+.form-check-input:checked::after{
+    content:"✓";
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:rgb(50, 237, 13);
+    font-size:18px;
+    font-weight:bold;
+    border-color: chartreuse;
+
+}
+
+.form-check-input:checked{
+ background-color: #172e0b;
+ border-color: #49f9035b;
+}
+
+hr{
+    color: #e7e2e4;
+}
+
+/* deslizador scrollbar modificacion */
+/* ↑↑ probando deslizador en solo lsitado de tareas↑↑ */
+.contenedor-lista::-webkit-scrollbar{
+    width:7px;
+}
+
+.contenedor-lista::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+.contenedor-lista::-webkit-scrollbar-thumb{
+    background:rgba(180, 136, 255, 0.301);
+    border-radius:999px;
+    transition:.2s;
+    border-top: 17px solid transparent;
+    border-bottom:20px solid transparent;
+    background-clip:padding-box;
+}
+
+.contenedor-lista::-webkit-scrollbar-thumb:hover{
+    background:#b388ff;
+}
+
+.contenedor-lista{
+    flex:1;
+    overflow-y:auto;
+    padding-right:6px;
 }
