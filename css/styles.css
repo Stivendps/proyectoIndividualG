@@ -1,15 +1,51 @@
 
+:root{
+
+    /*tema fondo*/
+    --bg-body:
+        radial-gradient(circle at top left,#64307f 0%,transparent 35%),
+        radial-gradient(circle at bottom right,#5c002b 0%,transparent 40%),
+        linear-gradient(135deg,#130015,#220026,#130015);
+
+    /*contenedores*/
+    --panel-bg:rgba(255,255,255,.08);
+    --card-bg:rgba(255,255,255,.06);
+    --border-color:rgba(255,255,255,.18);
+
+    /*textos*/
+    --text:#ffffff;
+    --text-secondary:#cfcfcf;
+
+    /*color principal*/
+    --primary:#b388ff;
+    --hover:rgba(255,255,255,.10);
+
+    /*botones*/
+    --btn-bg:rgba(255,255,255,.05);
+    --btn-hover:rgba(255,255,255,.12);
+
+    /*deslizador*/
+    --scroll:#b388ff;
+    /*propiedades*/
+    --priority1:#4a4a4a;
+    --priority2:#755525;
+    --priority3:#cc1717;
+
+}
+
 body{
+    background:var(--bg-body);
     margin:0;
     min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     font-family:Poppins,sans-serif;
-    background:
-    radial-gradient(circle at top left,#64307f 0%,transparent 35%),
-    radial-gradient(circle at bottom right,#5c002b 0%,transparent 40%),
-    linear-gradient(135deg,#130015,#220026,#130015);
+        color:var(--text);
+
+    transition:
+        background .35s,
+        color .35s;
 }
 
 .contenedoruno{
@@ -22,9 +58,9 @@ body{
 .sidebar{
     width:370px;
     border-radius:25px;
-    background:rgba(255,255,255,.08);
+    background:var(--panel-bg);
     -webkit-backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.18);
+    border:1px solid var(--border-color);
     box-shadow:
     inset 0 1px 2px rgba(255,255,255,.45),
     0 15px 40px rgba(0,0,0,.35);
@@ -34,9 +70,9 @@ body{
     display:flex;
     flex-direction:column;
     border-radius:25px;
-    background:rgba(255,255,255,.08);
+    background:var(--panel-bg);
     /* backdrop-filter:blur(20px); */
-    border:1px solid rgba(255,255,255,.18);
+    border:1px solid var(--border-color);
     box-shadow:
     inset 0 1px 2px rgba(255,255,255,.45),
     0 15px 40px rgba(0,0,0,.35);
@@ -45,7 +81,7 @@ body{
 } 
 
 .form-control{
-    background:rgba(255,255,255,.08);
+    background:var(--panel-bg);
     border:1px solid rgba(255,255,255,.15);
     color:white;
     border-radius:15px;
@@ -96,7 +132,7 @@ label{
 }
 
 .form-select{
-    background: rgba(255,255,255,.08);
+    background:var(--panel-bg);
     border:1px solid rgba(255,255,255,.15);
     color:white;
     border-radius:15px;
@@ -131,7 +167,7 @@ label{
     gap:18px;
     padding: 2px 2px;
     border-radius:20px;
-    background:rgba(255,255,255,.06);
+    background:var(--card-bg);
     border:1px solid rgba(255, 255, 255, 0.209);
     transition:.15s;
     justify-content: center;
@@ -154,8 +190,8 @@ h2{
 }
 
 .task-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
+    background:var(--card-bg);
+    border:1px solid var(--border-color);
     border-radius:20px;
     margin-bottom:5px;
     transition:0.2s;
@@ -190,13 +226,13 @@ h2{
 }
 
 .task-content h5{
-    color:#fff;
+    color:var(--text);
     font-size:1.1rem;
     font-weight:600;
 }
 
 .task-content span{
-    color:#cdc4c4;
+    color:var(--text);
     font-size:1.1rem;
     font-weight:500;
 }
@@ -215,11 +251,11 @@ h2{
     display:flex;
     gap:20px;
     font-size:.9rem;
-    color:#bdbdbd;
+    color:var(--text);
 }
 
 .task-description{
-    color:#cfcfcf;
+    color:var(--text-secondary);
     line-height:1.5;
     max-height:0;
     overflow:hidden;
@@ -330,17 +366,17 @@ h2{
 }
 
 .prioridad-1{
-    background:#4a4a4a05;
+    background:var(--priority1);
     color:rgb(231, 231, 231);
 }
 
 .prioridad-2{
-    background:#755525;
+    background:var(--priority2);
     color:rgb(235, 232, 229);
 }
 
 .prioridad-3{
-    background:#cc17178b;
+    background:var(--priority3);
     color:rgb(250, 248, 248);
 }
 
@@ -398,7 +434,7 @@ hr{
 }
 
 .contenedor-lista::-webkit-scrollbar-thumb{
-    background:rgba(180, 136, 255, 0.301);
+    background:var(--scroll);
     border-radius:999px;
     transition:.2s;
     border-top: 17px solid transparent;
@@ -414,4 +450,46 @@ hr{
     flex:1;
     overflow-y:auto;
     padding-right:6px;
+}
+
+/* temas de fondo para cambio  */
+/* ↑↑ probando temas para cambiar por seleccion↑↑ */
+body.tema-morado{
+
+}
+
+body.tema-black{
+    --bg-body:
+        linear-gradient(135deg,#080808,#1b1b1b,#080808);
+    --panel-bg:rgba(25,25,25,.85);
+    --card-bg:rgba(50,50,50,.35);
+    --border-color:rgba(255,255,255,.08);
+    --text:#ffffff;
+    --text-secondary:#bdbdbd;
+    --primary:#4da3ff;
+    --hover:rgba(255,255,255,.08);
+    --btn-bg:rgba(255,255,255,.05);
+    --btn-hover:rgba(255,255,255,.12);
+    --scroll:#4da3ff;
+    --priority1:#505050;
+    --priority2:#8d6515;
+    --priority3:#b4233d;
+}
+
+body.tema-white{
+    --bg-body:
+        linear-gradient(135deg,#ffffff,#ececec,#f8f8f8);
+    --panel-bg:#ffffff;
+    --card-bg:#f8f8f8;
+    --border-color:#dadada;
+    --text:#2c2c2c;
+    --text-secondary:#666666;
+    --primary:#7b3cff;
+    --hover:#ececec;
+    --btn-bg:#f1f1f1;
+    --btn-hover:#e6e6e6;
+    --scroll:#7b3cff;
+    --priority1:#d8d8d8;
+    --priority2:#ffcf66;
+    --priority3:#ff667d;
 }

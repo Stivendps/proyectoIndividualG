@@ -197,8 +197,27 @@ function limpiarFormulario(){
 
 renderizarTareas();
 
+// cambio de tema a sleccion
 
+const temas = document.querySelectorAll(".tema");
 
+temas.forEach(opcion => {
+
+    opcion.addEventListener("click", () => {
+
+        document.body.classList.remove(
+            "tema-morado",
+            "tema-black",
+            "tema-white"
+        );
+
+        document.body.classList.add(
+            "tema-" + opcion.dataset.tema
+        );
+
+    });
+
+});
 
 
 
