@@ -1,21 +1,21 @@
 
 :root{
 
-    /* inicio de tema fondo principal */
+    /* inicio de tema fondo principal se usan variables para colores*/
     --bg-body:
         radial-gradient(circle at top left,#64307f 0%,transparent 35%),
         radial-gradient(circle at bottom right,#5c002b 0%,transparent 40%),
         linear-gradient(135deg,#130015,#220026,#130015);
 
-    /*variables  para colores iniciales */
+    /*variables  para colores iniciales paneles*/
     --panel-bg:rgba(255,255,255,.08);
     --card-bg:rgba(255,255,255,.06);
     --border-color:rgba(255,255,255,.18);
 
-    /*textos*/
+    /*color para textos*/
     --text:#fcf6f6;
     --text-secondary:#cfcfcf;
-    --color:rgb(249, 249, 250);
+    --color:rgb(249, 249, 250);  /*este color no es visible en tema blanco*/
 
     /*color principal*/
     --primary:#b388ff;
@@ -25,7 +25,7 @@
     --btn-bg:rgba(255,255,255,.05);
     --btn-hover:rgba(255,255,255,.12);
 
-    /*deslizador*/
+    /*deslizador lateral derecho cuando hay ams listas en pantalla*/
     --scroll:#b388ff;
     /*color para propiedades -- se deja transparente la prioridad comun o estado normal */
     --priority1:#9c989804; 
@@ -191,6 +191,8 @@ h2{
     font-size: 40px;
 }
 
+/*tarjeta que contiene toda la tarea y se agrega a la lista */
+
 .task-card{
     background:var(--card-bg);
     border:1px solid var(--border-color);
@@ -200,7 +202,7 @@ h2{
     cursor:pointer;
     display: flex;
     align-items: center;
-    padding: 4PX;
+    padding: 4px;
 }
 
 .task-left{
@@ -282,7 +284,7 @@ h2{
     );
 }
 
-/* focus en card */
+/* focus en tarjeta de tarea */
 
 .task-card.active{
     background: rgba(255,255,255,.14);
@@ -348,6 +350,7 @@ h2{
     transform:translateY(-3px);
 }
 
+/* aqui se da forma a la figura de prioridad*/
 .prioridad{
     width:27px;
     height:40px;
@@ -356,7 +359,7 @@ h2{
     justify-content:center;
     font-weight:700;
     font-size:1.6rem;
-    clip-path:polygon(
+    clip-path:polygon( /*revisar estadisticas no queda la forma solicitada */
         50% 100%,
         0 78%,
         0 0,
@@ -364,7 +367,7 @@ h2{
         100% 78%
     );
     margin: 10px;
-    border-radius: 12px;
+    border-radius: 12px;  /*borde no se visualiza en la tarea */
 }
 
 .prioridad-1{
@@ -479,6 +482,8 @@ body.tema-black{
     --color:#f7f4f5;
 }
 
+
+
 body.tema-white{
     
     --bg-body:
@@ -497,4 +502,8 @@ body.tema-white{
     --priority2:#e6aa2a;
     --priority3:#f02e4b;
     --color:#080708;
+}
+
+body.tema-green{
+    
 }

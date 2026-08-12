@@ -125,6 +125,8 @@ lista.addEventListener("change", (e) => {
     actualizarEstadisticas();
 });
 
+// revisar funcion , no se ve el cambio de estadistica completadas al darle al checkbox 
+// chekbox no 
 function actualizarEstadisticas() {
     const total = tareas.length;
     const completadas = tareas.filter(tarea => tarea.completada).length;
@@ -198,17 +200,16 @@ function limpiarFormulario(){
 renderizarTareas();
 
 // cambio de tema a sleccion
-
+// 
 const temas = document.querySelectorAll(".tema");
 
 temas.forEach(opcion => {
     opcion.addEventListener("click", () => {
         document.body.classList.remove(
-            "tema-morado",
-            "tema-black",
-            "tema-white"
+            "tema-morado", //
+            "tema-black", // no se visualiza tema oscuro
+            "tema-white" //  todo el texto se pierde con tema claro
         );
-
         document.body.classList.add(
             "tema-" + opcion.dataset.tema
         );
