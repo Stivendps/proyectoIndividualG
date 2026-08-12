@@ -168,8 +168,13 @@ function eliminarTarea(id){
 function agregarTarea(e){
     e.preventDefault();
 
-    if(titulo.value.trim() === ""){
-        alert("Ingrese un título.");
+    ///  mensaje al no enocntrar infomracion en input determinados
+    if (
+        titulo.value.trim() === "" ||
+        fecha.value.trim() === "" ||
+        descripcion.value.trim() === ""
+    ) {
+        mostrarAlerta("Se deben completar todos los campos.");
         return;
     }
 
@@ -182,6 +187,7 @@ function agregarTarea(e){
         fecha: fecha.value,
         completada: false
     };
+
     tareas.push(tarea);
     guardarLocalStorage();
     agregarTarjeta(tarea);
@@ -216,5 +222,15 @@ temas.forEach(opcion => {
     });
 });
 
+// creacion de funcionalidad alerta , para no agregar librerias
 
+function mostrarAlerta(mensaje){
+    const alerta = document.getElementById("alerta");
+    const texto = document.getElementById("mensaje");
+    texto.textContent = mensaje;
+    alerta.classList.add("mostrar");
+    setTimeout(() => {
+        alerta.classList.remove("mostrar");
+    },3000);
+}
 

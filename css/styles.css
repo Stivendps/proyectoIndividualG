@@ -507,3 +507,30 @@ body.tema-white{
 body.tema-green{
     
 }
+
+
+/* boton alerta personalizado , remplazao botstrap */
+
+.alerta{
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    min-width: 320px;
+    padding: 16px 22px;
+    background: #3b0707;
+    color: #fff;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 10px 25px rgba(0,0,0,1);
+    opacity: 0;
+    transform: translateX(0%);
+    transition: .4s ease;
+    z-index: 9999;
+}
+
+.alerta.mostrar{
+    opacity: 1;
+    transform: translateX(100%);
+}
+
