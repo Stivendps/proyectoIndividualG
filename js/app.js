@@ -202,9 +202,7 @@ renderizarTareas();
 const temas = document.querySelectorAll(".tema");
 
 temas.forEach(opcion => {
-
     opcion.addEventListener("click", () => {
-
         document.body.classList.remove(
             "tema-morado",
             "tema-black",
@@ -214,9 +212,7 @@ temas.forEach(opcion => {
         document.body.classList.add(
             "tema-" + opcion.dataset.tema
         );
-
     });
-
 });
 
 
