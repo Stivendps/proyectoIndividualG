@@ -25,6 +25,7 @@ function obtenerPrioridad(estado) {
     }
 }
 // visualizacion de la tarjeta
+// cambios en tarjeta , el detalle se visualiza
 function crearTarjeta(tarea){
     const card = document.createElement("div");
     card.className = "task-card";
@@ -194,6 +195,7 @@ function agregarTarea(e){
     actualizarEstadisticas();
     limpiarFormulario();
 }
+
 
 function limpiarFormulario(){
     titulo.value="";
