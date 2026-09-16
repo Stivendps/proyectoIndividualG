@@ -259,7 +259,7 @@ function mostrarAlerta(mensaje) {
 
 document.querySelectorAll(".tema").forEach(opcion => {
     opcion.addEventListener("click", () => {
-        document.body.classList.remove("tema-morado", "tema-black", "tema-white");
+        document.body.classList.remove("tema-morado", "tema-black", "tema-white", "tema-green");
         document.body.classList.add(`tema-${opcion.dataset.tema}`);
     });
 });
