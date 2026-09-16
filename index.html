@@ -15,14 +15,39 @@
 
     <!-- formulario panel izquierdo-->
     <div class="contenedoruno d-flex">
-        <div class="sidebar d-flex flex-column flex-shrink-0 p-4"> <a href="/"
-                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"> <svg
+        <div class="sidebar d-flex flex-column flex-shrink-0 p-4">
+            <div class="encabezado-sidebar">
+                <a href="/"
+                class="d-flex align-items-center text-white text-decoration-none"> <svg
                     class="bi pe-none me-2" width="40" height="32" aria-hidden="true">
                     <use xlink:href="#bootstrap"></use>
                 </svg> <span class="fs-4">Tareas Diarias</span> </a>
+                <div class="dropdown">
+                    <button class="btn-tema dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" title="Cambiar tema">
+                        <i class="bi bi-palette"></i>
+                        <span>Tema</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                        <li><a class="dropdown-item tema" data-tema="morado">MORADO</a></li>
+                        <li><a class="dropdown-item tema" data-tema="black">OSCURO</a></li>
+                        <li><a class="dropdown-item tema" data-tema="white">CLARO</a></li>
+                        <li><a class="dropdown-item tema" data-tema="green">VERDE</a></li>
+                    </ul>
+                </div>
+            </div>
+            <button id="btnMobileAgregar" class="btn-mobile-agregar" type="button">
+                <i class="bi bi-plus-lg"></i>
+                Agregar tarea
+            </button>
             <hr>
             <div class="contact-form">
-                <h4 class="mb-4">Agregar tarea</h4>
+                <div class="formulario-mobile-header">
+                    <h4 class="mb-4">Agregar tarea</h4>
+                    <button id="btnCerrarFormulario" class="btn-cerrar-formulario" type="button" aria-label="Cerrar formulario">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
                 <form>
                     <div class="row">
                         <div class="col-md-6 mb-3">
@@ -61,23 +86,6 @@
                     <button id="btnAgregar" type="submit" class="btn btn-submit">Agregar tarea</button>
                 </form>
             </div>
-            <hr>
-            <div class="dropdown"> <a href="#"
-                    class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                    data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-pencil">
-                        <P></P>
-                    </i>
-                    <strong> CAMBIAR TEMA</strong> </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                    <li><a class="dropdown-item tema" data-tema="morado">MORADO</a></li>
-                    <li><a class="dropdown-item tema" data-tema="black">OSCURO</a></li>
-                    <li><a class="dropdown-item tema" data-tema="white">CLARO</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#">BORRAR TODO</a></li>
-                </ul>
-            </div>
             <!-- se agrega div para usar alerta, dsaffdas  -->
             <div id="alerta" class="alerta">
                 <span id="mensaje"></span>
@@ -86,7 +94,7 @@
         <!-- listado de las tareas panel derecho-->
         <div class="list flex-grow-1 p-4 tareas">
             <div class="estadisticas">
-                <div class="card-stat glass">
+                <div class="card-stat glass active">
                     <i class="bi bi-list-task"></i>
                     <h2 id="totalTareas">0</h2>
                     <p>Total</p>
@@ -109,28 +117,7 @@
             </div>
             <div class="separador"></div>
             <div class="contenedor-lista">
-                <div id="listaTareas" class="list-group w-100">
-                    <div class="task-card">
-                        <input class="form-check-input completar" type="checkbox">
-                        <span class="prioridad prioridad-3">!!!</span>
-                        <div class="task-content">
-                            <h5>Prueba 2</h5>
-                            <div class="task-info">
-                                <span><i class="bi bi-calendar-event"></i>2026-08-12</span>
-                                <span><i class="bi bi-person"></i>Rhonald</span>
-                            </div>
-                            <p class="task-description">
-                                Aquí probando 2
-                            </p>
-                        </div>
-                        <div class="task-actions">
-                            <button class="btn-icon editar">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <button class="btn-icon eliminar">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </div>
+                <div id="listaTareas" class="list-group w-100"></div>
                     </div>
                 </div>
             </div>
