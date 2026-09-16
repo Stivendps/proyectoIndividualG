@@ -169,22 +169,58 @@ body{
     padding:14px;
     border:none;
     border-radius:18px;
-    background:linear-gradient(135deg,var(--primary),#5f48d8);
+    background:linear-gradient(135deg,#8d59ff,#5f2ec5);
     transition:.15s;
     font-weight:600;
+    color:#fff;
 }
 
 .btn-submit:hover{
     transform:translateY(-3px);
-    box-shadow:0 10px 25px rgba(180,80,255,.4);
+    box-shadow:0 10px 25px rgba(141,89,255,.4);
 }
 
-body.tema-green .btn-submit{
+.btn-mobile-agregar{
+    background:linear-gradient(135deg,#8d59ff,#5f2ec5);
+    border:1px solid var(--border-color);
+    color:#fff;
+    box-shadow:0 10px 25px rgba(141,89,255,.25);
+}
+
+.btn-mobile-agregar:hover{
+    box-shadow:0 12px 28px rgba(141,89,255,.35);
+}
+
+body.tema-black .btn-submit,
+body.tema-black .btn-mobile-agregar{
+    background:linear-gradient(135deg,#7a1d45,#4d0d2d);
+    box-shadow:0 10px 25px rgba(122,29,69,.28);
+}
+
+body.tema-black .btn-submit:hover,
+body.tema-black .btn-mobile-agregar:hover{
+    box-shadow:0 12px 28px rgba(122,29,69,.38);
+}
+
+body.tema-white .btn-submit,
+body.tema-white .btn-mobile-agregar{
+    background:linear-gradient(135deg,#1e103d,#6545b5);
+    box-shadow:0 10px 25px rgba(30,16,61,.2);
+}
+
+body.tema-white .btn-submit:hover,
+body.tema-white .btn-mobile-agregar:hover{
+    box-shadow:0 12px 28px rgba(30,16,61,.28);
+}
+
+body.tema-green .btn-submit,
+body.tema-green .btn-mobile-agregar{
     background:linear-gradient(135deg,#48c777,#0d8c57);
     box-shadow:0 10px 25px rgba(72,199,119,.35);
 }
 
-body.tema-green .btn-submit:hover{
+body.tema-green .btn-submit:hover,
+body.tema-green .btn-mobile-agregar:hover{
     box-shadow:0 12px 28px rgba(72,199,119,.45);
 }
 
