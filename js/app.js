@@ -1,4 +1,49 @@
-let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+const tareasIniciales = [
+    {
+        id: 1,
+        titulo: "Revisar correos",
+        descripcion: "Responder los mensajes importantes y revisar pendientes del día.",
+        estado: "1",
+        asignado: "Rhonald",
+        fecha: "2026-09-15",
+        completada: true
+    },
+    {
+        id: 2,
+        titulo: "Preparar reunión",
+        descripcion: "Reunir agenda, materiales y orden del día para la reunión matutina.",
+        estado: "2",
+        asignado: "Carlos",
+        fecha: "2026-09-16",
+        completada: true
+    },
+    {
+        id: 3,
+        titulo: "Actualizar plan de trabajo",
+        descripcion: "Organizar las tareas del sprint y revisar prioridades del equipo.",
+        estado: "1",
+        asignado: "Laura",
+        fecha: "2026-09-17",
+        completada: false
+    },
+    {
+        id: 4,
+        titulo: "Enviar reporte",
+        descripcion: "Compilar avances semanales y compartir resumen final al grupo.",
+        estado: "3",
+        asignado: "María",
+        fecha: "2026-09-18",
+        completada: false
+    }
+];
+
+let tareas = JSON.parse(localStorage.getItem("tareas"));
+
+if (!tareas || tareas.length === 0) {
+    tareas = tareasIniciales;
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+}
+
 let tareaEditando = null;
 let tarjetaActiva = null;
 let filtroActivo = "total";
